@@ -1,0 +1,23 @@
+The Content of this Session (Function): 
+- Function Intro And Basic Usage
+- Function Advanced Examples
+- Function Return Statement And Use Cases
+- Function Default Parameters
+- Function Rest Parameters
+- Function Ultimate Practice
+- Random Arguments Function Challenge
+- Anonymous Function And Practice
+- Return Nested Function
+- Arrow Function Syntax
+- Scope – Global And Local
+- Scope – Block
+- Scope – Lexical (Static)
+- Arrow Function Challenge
+- Higher Order Functions – Map
+- Higher Order Functions – Map Practice
+- Higher Order Functions – Filter
+- Higher Order Functions – Filter Practice
+- Higher Order Functions – Reduce
+- Higher Order Functions – Reduce Practice
+- Higher Order Functions – ForEach & Practice
+- Higher Order Functions – Challenge

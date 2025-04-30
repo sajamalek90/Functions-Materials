@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScript Functions</h1>
+        <nav>
+            <ul>
+                <li><a href="#function-basics">Function Basics</a></li>
+                <li><a href="#function-advanced">Advanced Functions</a></li>
+                <li><a href="#scope">Scope Concepts</a></li>
+                <li><a href="#higher-order">Higher-Order Functions</a></li>
+                <li><a href="#challenges">Challenges</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="function-basics">
+            <h2>Function Fundamentals</h2>
+
+            <article id="function-intro">
+                <h3>Function Intro And Basic Usage</h3>
+                <p>Functions are reusable blocks of code that perform specific tasks.</p>
+                <pre><code>// Function declaration
+function greet(name) {
+    console.log(`Hello, ${name}!`);
+}
+
+// Function call
+greet('Alice'); // Hello, Alice!
+
+// Function expression
+const square = function(x) {
+    return x * x;
+};
+console.log(square(5)); // 25</code></pre>
+                <img src="https://i.imgur.com/JQl5D5N.png" alt="Function structure visualization">
+            </article>
+
+            <article id="function-advanced-examples">
+                <h3>Function Advanced Examples</h3>
+                <p>Functions can be used in more complex scenarios.</p>
+                <pre><code>// Function to calculate age
+function calculateAge(birthYear) {
+    return new Date().getFullYear() - birthYear;
+}
+
+// Function with multiple parameters
+function createUser(name, age, isAdmin = false) {
+    return {
+        username: name,
+        userAge: age,
+        admin: isAdmin
+    };
+}
+
+// Immediately Invoked Function Expression (IIFE)
+(function() {
+    console.log('This runs immediately');
+})();</code></pre>
+                <img src="https://i.imgur.com/VT9GQYp.png" alt="Advanced function examples">
+            </article>
+
+            <article id="return-statement">
+                <h3>Function Return Statement And Use Cases</h3>
+                <p>The <code>return</code> statement specifies the value to be returned.</p>
+                <pre><code>// Simple return
+function add(a, b) {
+    return a + b;
+}
+
+// Early return
+function checkAge(age) {
+    if (age < 18) {
+        return 'Minor';
+    }
+    return 'Adult';
+}
+
+// Returning multiple values (as object)
+function getDimensions() {
+    return {
+        width: 100,
+        height: 200
+    };
+}
+
+// No return (returns undefined)
+function noReturn() {
+    console.log('No return value');
+}</code></pre>
+                <img src="https://i.imgur.com/8Kj3LfM.png" alt="Return statement flow">
+            </article>
+        </section>
+
+        <section id="function-advanced">
+            <h2>Advanced Function Concepts</h2>
+
+            <article id="default-parameters">
+                <h3>Function Default Parameters</h3>
+                <p>Default parameters provide fallback values when arguments are not provided.</p>
+                <pre><code>function createMessage(name = 'Guest', message = 'Welcome!') {
+    return `${name}, ${message}`;
+}
+
+console.log(createMessage()); // Guest, Welcome!
+console.log(createMessage('Alice')); // Alice, Welcome!
+console.log(createMessage('Bob', 'Hello!')); // Bob, Hello!
+
+// Default parameters can be expressions
+function createId(prefix = 'usr', random = Math.random().toString(36).slice(2)) {
+    return `${prefix}_${random}`;
+}</code></pre>
+                <img src="https://i.imgur.com/9QvXZbB.png" alt="Default parameters visualization">
+            </article>
+
+            <article id="rest-parameters">
+                <h3>Function Rest Parameters</h3>
+                <p>Rest parameters allow functions to accept any number of arguments as an array.</p>
+                <pre><code>function sum(...numbers) {
+    return numbers.reduce((total, num) => total + num, 0);
+}
+
+console.log(sum(1, 2, 3)); // 6
+console.log(sum(10, 20, 30, 40)); // 100
+
+// Rest parameter must be last
+function logItems(title, ...items) {
+    console.log(title);
+    items.forEach(item => console.log(item));
+}</code></pre>
+                <img src="https://i.imgur.com/mX0YjqT.png" alt="Rest parameters visualization">
+            </article>
+
+            <article id="ultimate-practice">
+                <h3>Function Ultimate Practice</h3>
+                <p>Comprehensive example combining multiple function concepts.</p>
+                <pre><code>function createShoppingCart(discount = 0) {
+    const items = [];
+    
+    return {
+        addItem: function(name, price) {
+            items.push({ name, price });
+        },
+        removeItem: function(name) {
+            const index = items.findIndex(item => item.name === name);
+            if (index !== -1) items.splice(index, 1);
+        },
+        calculateTotal: function() {
+            const subtotal = items.reduce((sum, item) => sum + item.price, 0);
+            return subtotal * (1 - discount);
+        },
+        getItems: function() {
+            return [...items]; // Return copy
+        }
+    };
+}
+
+const cart = createShoppingCart(0.1); // 10% discount
+cart.addItem('Shirt', 25);
+cart.addItem('Pants', 40);
+console.log(cart.calculateTotal()); // 58.5</code></pre>
+                <img src="https://i.imgur.com/3rQc2Uw.png" alt="Shopping cart example">
+            </article>
+
+            <article id="random-arguments-challenge">
+                <h3>Random Arguments Function Challenge</h3>
+                <p>Create a function that accepts any number of arguments and returns a random one.</p>
+                <pre><code>function getRandomItem(...items) {
+    const randomIndex = Math.floor(Math.random() * items.length);
+    return items[randomIndex];
+}
+
+const randomColor = getRandomItem('red', 'green', 'blue', 'yellow');
+console.log(randomColor);</code></pre>
+                <img src="https://i.imgur.com/5tLk9dD.png" alt="Random arguments solution">
+            </article>
+
+            <article id="anonymous-functions">
+                <h3>Anonymous Function And Practice</h3>
+                <p>Anonymous functions are functions without a name, often used as callbacks.</p>
+                <pre><code>// As callback
+const numbers = [1, 2, 3];
+numbers.forEach(function(number) {
+    console.log(number * 2);
+});
+
+// As IIFE
+(function() {
+    console.log('This runs immediately');
+})();
+
+// Stored in variable
+const double = function(x) { return x * 2; };
+console.log(double(5)); // 10</code></pre>
+                <img src="https://i.imgur.com/7Kj4LfN.png" alt="Anonymous functions examples">
+            </article>
+
+            <article id="nested-functions">
+                <h3>Return Nested Function</h3>
+                <p>Functions can return other functions, creating closures.</p>
+                <pre><code>function createMultiplier(factor) {
+    return function(number) {
+        return number * factor;
+    };
+}
+
+const double = createMultiplier(2);
+const triple = createMultiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+
+// Practical example - counter
+function createCounter() {
+    let count = 0;
+    return {
+        increment: function() { count++; },
+        decrement: function() { count--; },
+        getCount: function() { return count; }
+    };
+}</code></pre>
+                <img src="https://i.imgur.com/JQl5D5N.png" alt="Nested functions visualization">
+            </article>
+
+            <article id="arrow-functions">
+                <h3>Arrow Function Syntax</h3>
+                <p>Arrow functions provide a concise syntax and handle <code>this</code> differently.</p>
+                <pre><code>// Basic syntax
+const add = (a, b) => a + b;
+
+// Single parameter (parentheses optional)
+const square = x => x * x;
+
+// Multiple parameters
+const greet = (name, age) => `Hello ${name}, you are ${age} years old`;
+
+// Multi-line body
+const calculate = (a, b) => {
+    const sum = a + b;
+    const product = a * b;
+    return { sum, product };
+};
+
+// No parameters
+const random = () => Math.random();</code></pre>
+                <img src="https://i.imgur.com/VT9GQYp.png" alt="Arrow function syntax">
+            </article>
+        </section>
+
+        <section id="scope">
+            <h2>Scope Concepts</h2>
+
+            <article id="global-local-scope">
+                <h3>Scope – Global And Local</h3>
+                <p>Scope determines where variables are accessible.</p>
+                <pre><code>// Global scope
+const globalVar = 'I am global';
+
+function testScope() {
+    // Local/function scope
+    const localVar = 'I am local';
+    console.log(globalVar); // Accessible
+    console.log(localVar); // Accessible
+}
+
+testScope();
+console.log(globalVar); // Accessible
+console.log(localVar); // Error: localVar is not defined</code></pre>
+                <img src="https://i.imgur.com/8Kj3LfM.png" alt="Scope visualization">
+            </article>
+
+            <article id="block-scope">
+                <h3>Scope – Block</h3>
+                <p><code>let</code> and <code>const</code> are block-scoped (within curly braces).</p>
+                <pre><code>if (true) {
+    const blockVar = 'I am block scoped';
+    let anotherVar = 'Me too';
+    console.log(blockVar); // Accessible
+}
+
+console.log(blockVar); // Error: blockVar is not defined
+
+for (let i = 0; i < 3; i++) {
+    console.log(i); // Each iteration has its own i
+}
+console.log(i); // Error: i is not defined</code></pre>
+                <img src="https://i.imgur.com/9QvXZbB.png" alt="Block scope visualization">
+            </article>
+
+            <article id="lexical-scope">
+                <h3>Scope – Lexical (Static)</h3>
+                <p>Functions can access variables from their outer scope.</p>
+                <pre><code>function outer() {
+    const outerVar = 'I am outside';
+    
+    function inner() {
+        console.log(outerVar); // Accessible due to lexical scope
+    }
+    
+    inner();
+}
+
+outer();
+
+// Practical example
+function createGreeting(greeting) {
+    return function(name) {
+        return `${greeting}, ${name}!`;
+    };
+}
+
+const sayHello = createGreeting('Hello');
+console.log(sayHello('Alice')); // Hello, Alice!</code></pre>
+                <img src="https://i.imgur.com/mX0YjqT.png" alt="Lexical scope visualization">
+            </article>
+
+            <article id="arrow-function-challenge">
+                <h3>Arrow Function Challenge</h3>
+                <p>Convert these functions to arrow functions and create a function that composes other functions.</p>
+                <pre><code>// Convert to arrow functions
+const multiply = (a, b) => a * b;
+
+const createPerson = (name, age) => ({ name, age });
+
+// Function composition
+const compose = (f, g) => x => f(g(x));
+
+const double = x => x * 2;
+const square = x => x * x;
+
+const doubleThenSquare = compose(square, double);
+console.log(doubleThenSquare(5)); // 100 (double 5 to 10, then square 10)</code></pre>
+                <img src="https://i.imgur.com/3rQc2Uw.png" alt="Arrow function challenge solution">
+            </article>
+        </section>
+
+        <section id="higher-order">
+            <h2>Higher-Order Functions</h2>
+
+            <article id="map-function">
+                <h3>Higher Order Functions – Map</h3>
+                <p><code>map()</code> creates a new array by transforming each element.</p>
+                <pre><code>const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // [2, 4, 6, 8]
+
+// With named function
+function toUpper(string) {
+    return string.toUpperCase();
+}
+
+const names = ['alice', 'bob', 'charlie'];
+const upperNames = names.map(toUpper);
+console.log(upperNames); // ['ALICE', 'BOB', 'CHARLIE']</code></pre>
+                <img src="https://i.imgur.com/5tLk9dD.png" alt="Map function visualization">
+            </article>
+
+            <article id="map-practice">
+                <h3>Higher Order Functions – Map Practice</h3>
+                <p>Practical examples of using <code>map()</code>.</p>
+                <pre><code>// Transform array of objects
+const products = [
+    { id: 1, name: 'Laptop', price: 999 },
+    { id: 2, name: 'Phone', price: 699 }
+];
+
+const productNames = products.map(product => product.name);
+console.log(productNames); // ['Laptop', 'Phone']
+
+// Add tax to prices
+const withTax = products.map(product => ({
+    ...product,
+    priceWithTax: product.price * 1.2
+}));
+
+// Convert temperatures
+const celsius = [0, 25, 100];
+const fahrenheit = celsius.map(c => (c * 9/5) + 32);</code></pre>
+                <img src="https://i.imgur.com/7Kj4LfN.png" alt="Map practice examples">
+            </article>
+
+            <article id="filter-function">
+                <h3>Higher Order Functions – Filter</h3>
+                <p><code>filter()</code> creates a new array with elements that pass a test.</p>
+                <pre><code>const numbers = [1, 2, 3, 4, 5, 6];
+const evens = numbers.filter(num => num % 2 === 0);
+console.log(evens); // [2, 4, 6]
+
+// Filtering objects
+const users = [
+    { name: 'Alice', age: 25 },
+    { name: 'Bob', age: 17 },
+    { name: 'Charlie', age: 30 }
+];
+
+const adults = users.filter(user => user.age >= 18);
+console.log(adults); // Alice and Charlie</code></pre>
+                <img src="https://i.imgur.com/JQl5D5N.png" alt="Filter function visualization">
+            </article>
+
+            <article id="filter-practice">
+                <h3>Higher Order Functions – Filter Practice</h3>
+                <p>Practical examples of using <code>filter()</code>.</p>
+                <pre><code>// Filter unique values
+const values = [1, 2, 2, 3, 4, 4, 5];
+const unique = values.filter((value, index, arr) => arr.indexOf(value) === index);
+
+// Search functionality
+function searchProducts(products, query) {
+    return products.filter(product => 
+        product.name.toLowerCase().includes(query.toLowerCase())
+    );
+}
+
+// Active users
+const allUsers = [
+    { id: 1, name: 'Alice', isActive: true },
+    { id: 2, name: 'Bob', isActive: false }
+];
+const activeUsers = allUsers.filter(user => user.isActive);</code></pre>
+                <img src="https://i.imgur.com/VT9GQYp.png" alt="Filter practice examples">
+            </article>
+
+            <article id="reduce-function">
+                <h3>Higher Order Functions – Reduce</h3>
+                <p><code>reduce()</code> applies a function to accumulate a single result.</p>
+                <pre><code>const numbers = [1, 2, 3, 4];
+const sum = numbers.reduce((total, num) => total + num, 0);
+console.log(sum); // 10
+
+// Flatten array
+const nested = [[1, 2], [3, 4], [5, 6]];
+const flat = nested.reduce((flatArray, subArray) => flatArray.concat(subArray), []);
+
+// Count occurrences
+const fruits = ['apple', 'banana', 'apple', 'orange'];
+const count = fruits.reduce((tally, fruit) => {
+    tally[fruit] = (tally[fruit] || 0) + 1;
+    return tally;
+}, {});</code></pre>
+                <img src="https://i.imgur.com/8Kj3LfM.png" alt="Reduce function visualization">
+            </article>
+
+            <article id="reduce-practice">
+                <h3>Higher Order Functions – Reduce Practice</h3>
+                <p>Practical examples of using <code>reduce()</code>.</p>
+                <pre><code>// Grouping by property
+const people = [
+    { name: 'Alice', age: 25 },
+    { name: 'Bob', age: 30 },
+    { name: 'Charlie', age: 25 }
+];
+
+const groupedByAge = people.reduce((groups, person) => {
+    const key = person.age;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(person);
+    return groups;
+}, {});
+
+// Calculate average
+const grades = [85, 90, 78, 92, 88];
+const average = grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
+
+// Compose functions
+const compose = (...fns) => x => fns.reduceRight((acc, fn) => fn(acc), x);</code></pre>
+                <img src="https://i.imgur.com/9QvXZbB.png" alt="Reduce practice examples">
+            </article>
+
+            <article id="foreach-function">
+                <h3>Higher Order Functions – ForEach & Practice</h3>
+                <p><code>forEach()</code> executes a function for each array element.</p>
+                <pre><code>const numbers = [1, 2, 3];
+numbers.forEach(num => console.log(num * 2));
+
+// Modifying DOM elements
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        console.log('Button clicked');
+    });
+});
+
+// Side effects
+const cart = [];
+const products = [{ id: 1, name: 'Shirt' }, { id: 2, name: 'Pants' }];
+products.forEach(product => cart.push(product));</code></pre>
+                <img src="https://i.imgur.com/mX0YjqT.png" alt="ForEach examples">
+            </article>
+        </section>
+
+        <section id="challenges">
+            <h2>Higher-Order Function Challenges</h2>
+
+            <article id="higher-order-challenge" class="challenge">
+                <h3>Higher Order Functions – Challenge</h3>
+                <p>Create functions that:</p>
+                <ol style="padding-left: 30px;">
+                    <li>Process sales data to get total revenue by category</li>
+                    <li>Implement a custom filter function without using Array.filter</li>
+                    <li>Create a pipeline of functions that process data step-by-step</li>
+                </ol>
+                <pre><code>// 1. Total revenue by category
+const sales = [
+    { id: 1, category: 'Electronics', amount: 100 },
+    { id: 2, category: 'Clothing', amount: 50 },
+    { id: 3, category: 'Electronics', amount: 200 }
+];
+
+function getRevenueByCategory(transactions) {
+    return transactions.reduce((totals, sale) => {
+        totals[sale.category] = (totals[sale.category] || 0) + sale.amount;
+        return totals;
+    }, {});
+}
+
+// 2. Custom filter
+function myFilter(array, callback) {
+    const result = [];
+    for (let item of array) {
+        if (callback(item)) result.push(item);
+    }
+    return result;
+}
+
+// 3. Function pipeline
+function createPipeline(...functions) {
+    return function(input) {
+        return functions.reduce((value, fn) => fn(value), input);
+    };
+}
+
+const clean = str => str.trim();
+const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
+const addGreeting = str => `Hello, ${str}!`;
+
+const formatName = createPipeline(clean, capitalize, addGreeting);
+console.log(formatName('  alice  ')); // Hello, Alice!</code></pre>
+                <img src="https://i.imgur.com/3rQc2Uw.png" alt="Challenge solutions">
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Functions, Lecture Materials. All rights reserved.</p>
+        <p>Powered by: <a href="https://www.linkedin.com/in/saja-malek/">Saja Malek</a></p>
+    </footer>
+</body>
+</html>
