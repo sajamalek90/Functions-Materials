@@ -40,7 +40,6 @@ const square = function(x) {
     return x * x;
 };
 console.log(square(5)); // 25</code></pre>
-                <img src="https://i.imgur.com/JQl5D5N.png" alt="Function structure visualization">
             </article>
 
             <article id="function-advanced-examples">
@@ -64,7 +63,6 @@ function createUser(name, age, isAdmin = false) {
 (function() {
     console.log('This runs immediately');
 })();</code></pre>
-                <img src="https://i.imgur.com/VT9GQYp.png" alt="Advanced function examples">
             </article>
 
             <article id="return-statement">
@@ -95,7 +93,6 @@ function getDimensions() {
 function noReturn() {
     console.log('No return value');
 }</code></pre>
-                <img src="https://i.imgur.com/8Kj3LfM.png" alt="Return statement flow">
             </article>
         </section>
 
@@ -117,7 +114,6 @@ console.log(createMessage('Bob', 'Hello!')); // Bob, Hello!
 function createId(prefix = 'usr', random = Math.random().toString(36).slice(2)) {
     return `${prefix}_${random}`;
 }</code></pre>
-                <img src="https://i.imgur.com/9QvXZbB.png" alt="Default parameters visualization">
             </article>
 
             <article id="rest-parameters">
@@ -135,7 +131,6 @@ function logItems(title, ...items) {
     console.log(title);
     items.forEach(item => console.log(item));
 }</code></pre>
-                <img src="https://i.imgur.com/mX0YjqT.png" alt="Rest parameters visualization">
             </article>
 
             <article id="ultimate-practice">
@@ -166,7 +161,6 @@ const cart = createShoppingCart(0.1); // 10% discount
 cart.addItem('Shirt', 25);
 cart.addItem('Pants', 40);
 console.log(cart.calculateTotal()); // 58.5</code></pre>
-                <img src="https://i.imgur.com/3rQc2Uw.png" alt="Shopping cart example">
             </article>
 
             <article id="random-arguments-challenge">
@@ -179,7 +173,6 @@ console.log(cart.calculateTotal()); // 58.5</code></pre>
 
 const randomColor = getRandomItem('red', 'green', 'blue', 'yellow');
 console.log(randomColor);</code></pre>
-                <img src="https://i.imgur.com/5tLk9dD.png" alt="Random arguments solution">
             </article>
 
             <article id="anonymous-functions">
@@ -199,7 +192,6 @@ numbers.forEach(function(number) {
 // Stored in variable
 const double = function(x) { return x * 2; };
 console.log(double(5)); // 10</code></pre>
-                <img src="https://i.imgur.com/7Kj4LfN.png" alt="Anonymous functions examples">
             </article>
 
             <article id="nested-functions">
@@ -226,7 +218,6 @@ function createCounter() {
         getCount: function() { return count; }
     };
 }</code></pre>
-                <img src="https://i.imgur.com/JQl5D5N.png" alt="Nested functions visualization">
             </article>
 
             <article id="arrow-functions">
@@ -250,7 +241,6 @@ const calculate = (a, b) => {
 
 // No parameters
 const random = () => Math.random();</code></pre>
-                <img src="https://i.imgur.com/VT9GQYp.png" alt="Arrow function syntax">
             </article>
         </section>
 
@@ -273,7 +263,6 @@ function testScope() {
 testScope();
 console.log(globalVar); // Accessible
 console.log(localVar); // Error: localVar is not defined</code></pre>
-                <img src="https://i.imgur.com/8Kj3LfM.png" alt="Scope visualization">
             </article>
 
             <article id="block-scope">
@@ -291,7 +280,6 @@ for (let i = 0; i < 3; i++) {
     console.log(i); // Each iteration has its own i
 }
 console.log(i); // Error: i is not defined</code></pre>
-                <img src="https://i.imgur.com/9QvXZbB.png" alt="Block scope visualization">
             </article>
 
             <article id="lexical-scope">
@@ -318,7 +306,6 @@ function createGreeting(greeting) {
 
 const sayHello = createGreeting('Hello');
 console.log(sayHello('Alice')); // Hello, Alice!</code></pre>
-                <img src="https://i.imgur.com/mX0YjqT.png" alt="Lexical scope visualization">
             </article>
 
             <article id="arrow-function-challenge">
@@ -337,7 +324,6 @@ const square = x => x * x;
 
 const doubleThenSquare = compose(square, double);
 console.log(doubleThenSquare(5)); // 100 (double 5 to 10, then square 10)</code></pre>
-                <img src="https://i.imgur.com/3rQc2Uw.png" alt="Arrow function challenge solution">
             </article>
         </section>
 
@@ -359,7 +345,6 @@ function toUpper(string) {
 const names = ['alice', 'bob', 'charlie'];
 const upperNames = names.map(toUpper);
 console.log(upperNames); // ['ALICE', 'BOB', 'CHARLIE']</code></pre>
-                <img src="https://i.imgur.com/5tLk9dD.png" alt="Map function visualization">
             </article>
 
             <article id="map-practice">
@@ -383,7 +368,6 @@ const withTax = products.map(product => ({
 // Convert temperatures
 const celsius = [0, 25, 100];
 const fahrenheit = celsius.map(c => (c * 9/5) + 32);</code></pre>
-                <img src="https://i.imgur.com/7Kj4LfN.png" alt="Map practice examples">
             </article>
 
             <article id="filter-function">
@@ -402,7 +386,6 @@ const users = [
 
 const adults = users.filter(user => user.age >= 18);
 console.log(adults); // Alice and Charlie</code></pre>
-                <img src="https://i.imgur.com/JQl5D5N.png" alt="Filter function visualization">
             </article>
 
             <article id="filter-practice">
@@ -425,7 +408,6 @@ const allUsers = [
     { id: 2, name: 'Bob', isActive: false }
 ];
 const activeUsers = allUsers.filter(user => user.isActive);</code></pre>
-                <img src="https://i.imgur.com/VT9GQYp.png" alt="Filter practice examples">
             </article>
 
             <article id="reduce-function">
@@ -445,7 +427,6 @@ const count = fruits.reduce((tally, fruit) => {
     tally[fruit] = (tally[fruit] || 0) + 1;
     return tally;
 }, {});</code></pre>
-                <img src="https://i.imgur.com/8Kj3LfM.png" alt="Reduce function visualization">
             </article>
 
             <article id="reduce-practice">
@@ -471,7 +452,6 @@ const average = grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
 
 // Compose functions
 const compose = (...fns) => x => fns.reduceRight((acc, fn) => fn(acc), x);</code></pre>
-                <img src="https://i.imgur.com/9QvXZbB.png" alt="Reduce practice examples">
             </article>
 
             <article id="foreach-function">
@@ -492,7 +472,6 @@ buttons.forEach(button => {
 const cart = [];
 const products = [{ id: 1, name: 'Shirt' }, { id: 2, name: 'Pants' }];
 products.forEach(product => cart.push(product));</code></pre>
-                <img src="https://i.imgur.com/mX0YjqT.png" alt="ForEach examples">
             </article>
         </section>
 
@@ -543,7 +522,6 @@ const addGreeting = str => `Hello, ${str}!`;
 
 const formatName = createPipeline(clean, capitalize, addGreeting);
 console.log(formatName('  alice  ')); // Hello, Alice!</code></pre>
-                <img src="https://i.imgur.com/3rQc2Uw.png" alt="Challenge solutions">
             </article>
         </section>
     </main>
